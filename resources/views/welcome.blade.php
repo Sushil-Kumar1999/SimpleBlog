@@ -38,8 +38,9 @@
             @endif
 
             <div class="container mx-auto">
-                <div class="flex justify-center items-center blue-500">
-                    Welcome to SimpleBlog. Please login
+                <div class="flex flex-col space-y-8 items-center text-blue-500 text-3xl">
+                    <span>Welcome to SimpleBlog</span>
+                    <span>Please login to continue</span>
                 </div>
             </div>
         </div>
