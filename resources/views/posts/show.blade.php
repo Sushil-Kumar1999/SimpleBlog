@@ -5,5 +5,5 @@
 @section('content')
 <h3>{{ $post->title }}</h3>
 
-<p class="flex ">{{ $post->content }}</p>
+<p>{{ $post->content }}</p>
 @endsection
