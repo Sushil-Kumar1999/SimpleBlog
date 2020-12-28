@@ -12,11 +12,12 @@ class ProfileSeeder extends Seeder
     {
         $profile = new Profile();
         $profile->about = "This is a test profile";
+        $profile->role = "user";
         $profile->last_active = now();
         $profile->user_id = 1;
         $profile->save();
 
         Profile::factory()->hasPosts(3)
-            ->count(9)->create(); 
+            ->count(9)->create();
     }
 }

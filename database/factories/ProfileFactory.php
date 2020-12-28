@@ -14,6 +14,7 @@ class ProfileFactory extends Factory
     {
         return [
             "about" => $this->faker->sentence,
+            "role" => $this->faker->randomElement(["user", "admin"]),
             "last_active" => $this->faker->dateTime('now'),
             "user_id" => User::factory()->create()->id
         ];
