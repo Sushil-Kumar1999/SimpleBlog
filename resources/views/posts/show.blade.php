@@ -14,7 +14,7 @@
         </h6>
 
         </span>
-            Last Updated : {{ $post->updated_at }}
+            Last Updated : {{ date("l, F j, Y g:i a", strtotime($post->updated_at)) }}
         </span>
 
         <div class="mt-8 px-4 py-4 rounded-xl overflow-hidden bg-white">
