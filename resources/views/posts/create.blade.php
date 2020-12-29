@@ -14,7 +14,7 @@
             <label for="content">Content <span class="text-red-500">*</span> :</label>
             <textarea id="content" name="content" rows="15" placeholder="Write your post here"></textarea>
 
-            <input type="hidden" name="profile_id" value="{{Auth::user()->profile->id}}">
+            <input type="hidden" name="profile_id" value="{{ Auth::user()->profile->id }}">
 
             <div class="inline flex justify-end mt-2">
                 <input class="cursor-pointer bg-blue-500 text-white text-md rounded-full px-3 py-1" type="submit">

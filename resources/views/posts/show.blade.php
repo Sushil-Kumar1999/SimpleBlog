@@ -5,7 +5,7 @@
             View Post
         </h2>
 
-        <button class="inline flex rounded bg-blue-400 text-white text-xm px-2 py-2">
+        <button class="inline flex rounded-xl bg-blue-500 text-white text-xm px-2 py-2">
             <a href={{ route('comments.page', $post->id) }}>
                 View Comments
             </a>
