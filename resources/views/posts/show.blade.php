@@ -4,6 +4,12 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             View Post
         </h2>
+
+        <button class="inline flex rounded bg-blue-400 text-white text-xm px-2 py-2">
+            <a href={{ route('comments.page', $post->id) }}>
+                View Comments
+            </a>
+        </button>
     </x-slot>
 
     <div class="flex-col mx-8 my-6 px">
