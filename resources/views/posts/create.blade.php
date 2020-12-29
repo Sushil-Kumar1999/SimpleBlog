@@ -9,10 +9,10 @@
         <form class="flex flex-col space-y-5" method="POST" action={{route('posts.store')}}>
             @csrf
             <label for="title">Title <span class="text-red-500">*</span>:</label>
-            <input type="text" id="title" name="title" placeholder="Enter a title">
+            <input type="text" id="title" name="title" placeholder="Enter a title" value="{{ old('title') }}">
 
             <label for="content">Content <span class="text-red-500">*</span> :</label>
-            <textarea id="content" name="content" rows="15" placeholder="Write your post here"></textarea>
+            <textarea id="content" name="content" rows="15" placeholder="Write your post here">{{ old('content') }}</textarea>
 
             <input type="hidden" name="profile_id" value="{{ Auth::user()->profile->id }}">
 
