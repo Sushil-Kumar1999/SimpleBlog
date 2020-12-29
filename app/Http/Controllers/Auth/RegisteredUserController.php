@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Profile;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -45,6 +46,13 @@ class RegisteredUserController extends Controller
         ]));
 
         event(new Registered($user));
+
+        $profile = new Profile();
+        $profile->about = "This is my profile";
+        $profile->role = "user";
+        $profile->last_active = now();
+        $profile->user_id = $user->id;
+        $profile->save();
 
         return redirect(RouteServiceProvider::HOME);
     }
