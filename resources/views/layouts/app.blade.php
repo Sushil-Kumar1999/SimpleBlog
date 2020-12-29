@@ -27,6 +27,17 @@
                 </div>
             </header>
 
+            @if($errors->any())
+            <div class="flex flex-col px-3 py-2 mt-6 mx-6 bg-red-200 text-red-700 rounded-xl">
+                Errors:
+                <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+                </ul>
+            </div>
+            @endif
+
             <!-- Page Content -->
             <main>
                 {{ $slot }}
