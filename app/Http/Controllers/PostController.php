@@ -25,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -36,7 +36,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|unique:posts|string',
+            'content' => 'required',
+            'profile_id' => 'required|integer'
+        ]);
+
+        $post = new Post();
+        $post->title = $validatedData['title'];
+        $post->content = $validatedData['content'];
+        $post->profile_id = $validatedData['profile_id'];
+        $post->save();
     }
 
     public function show(Post $post)

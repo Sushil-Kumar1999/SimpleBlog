@@ -2,8 +2,14 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Posts') }}
+            Posts
         </h2>
+
+        <button class="inline flex rounded bg-blue-400 text-white text-xm px-2 py-2">
+            <a href={{route('posts.create')}}>
+                Create New Post
+            </a>
+        </button>
     </x-slot>
 
     <div class="container mx-auto px-10 py-10">
@@ -42,7 +48,7 @@
              @endforeach
         </div>
 
-        <div>{{$posts->links()}}</div>
+        <div class="mt-3 px-3">{{ $posts->links() }}</div>
     </div>
 
 </x-app-layout>
