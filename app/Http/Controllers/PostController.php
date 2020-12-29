@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(6);
+        $posts = Post::orderBy('updated_at', 'desc')->paginate(6);
         return view('posts.index', ['posts' => $posts]);
     }
 
@@ -47,6 +47,10 @@ class PostController extends Controller
         $post->content = $validatedData['content'];
         $post->profile_id = $validatedData['profile_id'];
         $post->save();
+
+        session()->flash('post created', 'Post created successfully');
+
+        return redirect()->route('posts.index');
     }
 
     public function show(Post $post)
