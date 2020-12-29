@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Profile;
+use App\Models\Role;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -49,10 +50,12 @@ class RegisteredUserController extends Controller
 
         $profile = new Profile();
         $profile->about = "This is my profile";
-        $profile->role = "user";
         $profile->last_active = now();
         $profile->user_id = $user->id;
         $profile->save();
+
+        $role_id = Role::firstWhere('name', 'User')->id;
+        $profile->roles()->attach($role_id);
 
         return redirect(RouteServiceProvider::HOME);
     }

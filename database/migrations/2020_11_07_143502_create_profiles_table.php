@@ -11,7 +11,6 @@ class CreateProfilesTable extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
             $table->mediumText('about');
-            $table->string('role');
             $table->timestamp('last_active');
             $table->timestamps();
 
