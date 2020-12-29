@@ -27,6 +27,11 @@ class CommentController extends Controller
         ]);
 
         $comment = new Comment();
-        //$comment->body = $request
+        $comment->body = $validatedData['body'];
+        $comment->profile_id =$validatedData['profile_id'];
+        $comment->post_id = $validatedData['post_id'];
+        $comment->save();
+
+        return $comment;
     }
 }
