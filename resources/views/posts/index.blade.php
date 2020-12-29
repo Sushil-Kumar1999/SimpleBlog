@@ -13,6 +13,10 @@
     </x-slot>
 
     <div class="container mx-auto px-10 py-10">
+        @if(session('post created'))
+        <p class="inline flex px-3 py-2 my-2 mx-2 bg-green-200 text-green-700 rounded-xl">Post created successfully</p>
+        @endif
+
         <div class="flex flex-wrap ">
             @foreach($posts as $post)
             <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
