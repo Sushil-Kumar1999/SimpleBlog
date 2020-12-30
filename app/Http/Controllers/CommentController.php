@@ -34,4 +34,24 @@ class CommentController extends Controller
 
         return $comment;
     }
+
+    public function edit(Comment $comment)
+    {
+        return view('comments.edit', ['comment' => $comment]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'body' => 'required',
+        ]);
+
+        $comment = Comment::find($id);
+        $comment->body = $validatedData['body'];
+        $comment->save();
+
+        session()->flash('comment updated', 'Comment updated successfully');
+
+        return redirect()->route('comments.page', $comment->post_id);
+    }
 }

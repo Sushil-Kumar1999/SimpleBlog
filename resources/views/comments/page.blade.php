@@ -18,15 +18,26 @@
                 {{ $comment->body }}
 
                 <footer class="flex items-center justify-between leading-none md:p-4">
-                    <span class="flex items-center no-underline text-black" href="#">
-                        <img alt="Placeholder" class="block rounded-full" src="https://picsum.photos/32/32/?random">
-                        <p class="ml-2 text-sm">
-                            {{ $comment->profile->user->name }}
+                    <div class="flex flex-row space-x-6 items-center">
+                        <span class="flex items-center no-underline text-black" href="#">
+                            <img alt="Placeholder" class="block rounded-full" src="https://picsum.photos/32/32/?random">
+                            <p class="ml-2 text-sm">
+                                {{ $comment->profile->user->name }}
+                            </p>
+                        </span>
+
+                        <p class="text-grey-darker text-sm">
+                            {{ date("F j, Y", strtotime($comment->updated_at)) }}
                         </p>
-                    </span>
-                    <p class="text-grey-darker text-sm">
-                        {{ date("F j, Y", strtotime($comment->updated_at)) }}
-                    </p>
+                    </div>
+
+                    @if($comment->profile_id === Auth::user()->profile->id)
+                    <button class="inline flex rounded-xl bg-blue-500 text-white text-xm px-3 py-2">
+                        <a href={{ route('comments.edit',$comment) }}>
+                            Edit
+                        </a>
+                    </button>
+                    @endif
                 </footer>
             </article>
             @endforeach

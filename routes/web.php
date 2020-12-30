@@ -27,6 +27,7 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
+// Post
 Route::get('/posts', [PostController::class, 'index'])->middleware(['auth'])->name('posts.index');
 
 Route::get('/posts/create', [PostController::class, 'create'])->middleware(['auth'])->name('posts.create');
@@ -41,8 +42,15 @@ Route::patch('/posts/{post}', [PostController::class, 'update'])->middleware(['a
 
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->middleware(['auth'])->name('posts.destroy');
 
+// Comment
 Route::get('/posts/{post}/comments', [CommentController::class, 'page'])->middleware(['auth'])->name('comments.page');
 
+Route::get('/comments/{comment}/edit', [CommentController::class, 'edit'])->middleware(['auth'])->name('comments.edit');
+
+Route::patch('/comments/{comment}', [CommentController::class, 'update'])->middleware(['auth'])->name('comments.update');
+
+// Profile
 Route::get('/profiles/{profile}', [ProfileController::class, 'show'])->middleware(['auth'])->name('profiles.show');
 
+// Role
 Route::get('/roles/{role}', [RoleController::class, 'show'])->middleware(['auth'])->name('roles.show');
