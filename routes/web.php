@@ -39,6 +39,8 @@ Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->middleware(['
 
 Route::patch('/posts/{post}', [PostController::class, 'update'])->middleware(['auth'])->name('posts.update');
 
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->middleware(['auth'])->name('posts.destroy');
+
 Route::get('/posts/{post}/comments', [CommentController::class, 'page'])->middleware(['auth'])->name('comments.page');
 
 Route::get('/profiles/{profile}', [ProfileController::class, 'show'])->middleware(['auth'])->name('profiles.show');

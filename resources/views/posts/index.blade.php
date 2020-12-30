@@ -15,11 +15,15 @@
     <div class="container mx-auto px-10 py-10">
 
         @if(Session::has('post created'))
-        <p class="inline flex px-3 py-2 mb-6 mx-2 bg-green-200 text-green-700 rounded-xl">{{ Session::get('post created') }}</p>
+        <p class="inline flex px-3 py-2 mb-6 mx-2 bg-green-100 text-green-600 rounded-xl">{{ Session::get('post created') }}</p>
         @endif
 
         @if(Session::has('post updated'))
-        <p class="inline flex px-3 py-2 mb-6 mx-2 bg-green-200 text-green-700 rounded-xl">{{ Session::get('post updated') }}</p>
+        <p class="inline flex px-3 py-2 mb-6 mx-2 bg-yellow-100 text-yellow-600 rounded-xl">{{ Session::get('post updated') }}</p>
+        @endif
+
+        @if(Session::has('post deleted'))
+        <p class="inline flex px-3 py-2 mb-6 mx-2 bg-red-100 text-red-600 rounded-xl">{{ Session::get('post deleted') }}</p>
         @endif
 
         <div class="flex flex-wrap ">

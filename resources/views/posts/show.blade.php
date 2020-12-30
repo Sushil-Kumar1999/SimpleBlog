@@ -7,11 +7,13 @@
 
         <div class="flex flex-row space-x-8 items-center">
             @if(in_array('Administrator', Auth::user()->profile->roles->pluck('name')->all()))
-            <button class="inline flex rounded-xl bg-red-500 text-white text-xm px-2 py-2">
-                <a href={{ route('posts.edit', $post->id) }}>
+            <form method="post" action={{ route('posts.destroy', $post) }}>
+                @csrf
+                @method('DELETE')
+                <button id="deletePost" class="inline flex rounded-xl bg-red-500 text-white text-xm px-2 py-2" type="submit">
                     Delete Post
-                </a>
-            </button>
+                </button>
+            </form>
             @endif
 
             <button class="inline flex rounded-xl bg-blue-500 text-white text-xm px-2 py-2">
@@ -37,5 +39,18 @@
             {{ $post->content }}
         </div>
     </div>
+
+    {{-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script>
+        $("#deletePost").click(function() {
+            $.ajax({
+                url: "{{ route('api.posts.destroy', $post->id) }}",
+                type: "delete",
+                success: function(response) {
+                    console.log(response);
+                }
+            });
+        });
+    </script> --}}
 
 </x-app-layout>
