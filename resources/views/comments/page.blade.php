@@ -33,7 +33,7 @@
 
             <div class="mt-5 px-3">{{ $comments->links() }}</div>
 
-            <form name="addCommentForm" id="addCommentForm" class="flex flex-col space-y-5"  method="post" action="javascript:void(0)">
+            <form name="addCommentForm" id="addCommentForm" class="flex flex-col space-y-5" method="post" action="javascript:void(0)">
                 @csrf
                 <label for="body">Write a comment <span class="text-red-500">*</span> :</label>
                 <textarea id="body" name="body" rows="7" placeholder="Write your comment here"></textarea>
