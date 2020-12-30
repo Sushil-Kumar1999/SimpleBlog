@@ -42,17 +42,4 @@
         </div>
     </div>
 
-    {{-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <script>
-        $("#deletePost").click(function() {
-            $.ajax({
-                url: "{{ route('api.posts.destroy', $post->id) }}",
-                type: "delete",
-                success: function(response) {
-                    console.log(response);
-                }
-            });
-        });
-    </script> --}}
-
 </x-app-layout>
