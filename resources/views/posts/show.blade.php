@@ -6,8 +6,8 @@
         </h2>
 
         <button class="inline flex rounded-xl bg-blue-500 text-white text-xm px-2 py-2">
-            <a href={{ route('comments.page', $post->id) }}>
-                View Comments
+            <a href={{ route('posts.edit', $post->id) }}>
+                Edit Post
             </a>
         </button>
     </x-slot>

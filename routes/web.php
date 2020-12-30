@@ -35,6 +35,10 @@ Route::post('/posts', [PostController::class, 'store'])->middleware(['auth'])->n
 
 Route::get('/posts/{post}', [PostController::class, 'show'])->middleware(['auth'])->name('posts.show');
 
+Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->middleware(['auth'])->name('posts.edit');
+
+Route::post('/posts/{post}', [PostController::class, 'update'])->middleware(['auth'])->name('posts.update');
+
 Route::get('/posts/{post}/comments', [CommentController::class, 'page'])->middleware(['auth'])->name('comments.page');
 
 Route::get('/profiles/{profile}', [ProfileController::class, 'show'])->middleware(['auth'])->name('profiles.show');

@@ -37,7 +37,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'title' => 'required|unique:posts|string',
+            'title' => 'required|unique:posts|max:100',
             'content' => 'required',
             'profile_id' => 'required|integer'
         ]);
@@ -64,9 +64,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('posts.edit', ['post' => $post]);
     }
 
     /**
@@ -78,7 +78,20 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|max:100',
+            'content' => 'required'
+        ]);
+
+        $post = Post::find($id);
+
+        $post->title = $validatedData['title'];
+        $post->content = $validatedData['content'];
+        $post->save();
+
+        session()->flash('post updated', 'Post updated successfully');
+
+        return redirect()->route('posts.index');
     }
 
     /**
