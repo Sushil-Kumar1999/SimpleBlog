@@ -15,13 +15,13 @@
         </div>
 
         <div class="flex flex-col bg-green-100 text-green-600 rounded-md py-6 px-6">
-            <h3 class="font-bold underline mb-2">Last Active: </h3>
+            <h3 class="font-bold underline mb-2">Last Active</h3>
             <span>{{ date("l, F j, Y g:i a", strtotime($profile->last_active)) }}</spam>
         </div>
 
 
         <div class="flex flex-col bg-red-100 text-red-600 rounded-md py-6 px-6">
-            <h3 class="font-bold underline mb-3">Roles:</h3>
+            <h3 class="font-bold underline mb-3">Roles</h3>
             <div class="flex flex-row space-x-8">
                 @foreach($profile->roles as $role)
                 <span class="inline flex justify-between bg-red-500 text-white rounded-full px-3 py-1">{{ $role->name }}</span>
