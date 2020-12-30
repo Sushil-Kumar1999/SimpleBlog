@@ -21,7 +21,7 @@ class ProfileSeeder extends Seeder
 
         Profile::all()->each(function($profile) {
             $roles = array(1, 2, 3);
-            $roles_to_attach = array_slice($roles, 0, rand(0, 3));
+            $roles_to_attach = array_slice($roles, 0, rand(1, 3));
             $profile->roles()->syncWithoutDetaching($roles_to_attach);
         });
     }
