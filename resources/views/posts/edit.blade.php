@@ -9,7 +9,7 @@
     <div class="container px-6 py-6">
         <form class="flex flex-col space-y-5" method="post" action={{ route('posts.update', $post->id) }}>
             @csrf
-            <input type="hidden" name="_method" value="PATCH">
+            @method('PATCH')
 
             <label for="title">Title <span class="text-red-500">*</span>:</label>
             <input type="text" id="title" name="title" placeholder="Enter a title" value="{{ $post->title }}">
