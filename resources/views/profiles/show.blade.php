@@ -24,7 +24,11 @@
             <h3 class="font-bold underline mb-3">Roles</h3>
             <div class="flex flex-row space-x-8">
                 @foreach($profile->roles as $role)
-                <span class="inline flex justify-between bg-red-500 text-white rounded-full px-3 py-1">{{ $role->name }}</span>
+                <a href={{ route('roles.show', $role) }}>
+                    <span class="inline flex justify-between bg-red-500 text-white rounded-full px-3 py-1 hover:underline">
+                        {{ $role->name }}
+                    </span>
+                </a>
                 @endforeach
             </div>
         </div>
