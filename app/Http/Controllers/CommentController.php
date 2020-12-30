@@ -10,11 +10,10 @@ class CommentController extends Controller
 {
     public function page(Post $post)
     {
-        $post_id = $post->id;
-        $comments = Comment::where('post_id', $post_id)
+        $comments = Comment::where('post_id', $post->id)
                            ->orderBy('updated_at', 'desc')
                            ->paginate(5);
-        //dd($comments);
+
         return view('comments.page', ['comments' => $comments, 'post' => $post]);
     }
 

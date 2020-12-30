@@ -26,8 +26,8 @@
         </div>
     </x-slot>
 
-    <div class="flex flex-col mx-8 my-6 px">
-        <h3 class="mb-8 text-xl">{{ $post->title }}</h3>
+    <div class="flex flex-col mx-8 my-6 space-y-5">
+        <h3 class="text-xl">{{ $post->title }}</h3>
 
         <h6 class="text-gray-800">
             Posted by {{ $post->profile->user->name }}
@@ -39,6 +39,14 @@
 
         <div class="mt-8 px-4 py-4 rounded-xl overflow-hidden bg-white">
             {{ $post->content }}
+        </div>
+
+        <div class="inline flex justify-end mt-2">
+            <button class="cursor-pointer bg-blue-500 text-white text-md rounded-full px-3 py-1" type="submit">
+                <a href={{ route('comments.page', $post) }}>
+                    View comments
+                </a>
+            </button>
         </div>
     </div>
 

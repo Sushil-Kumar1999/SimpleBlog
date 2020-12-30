@@ -8,10 +8,14 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 
-    <div class="container mx-auto px-10 py-10">
+    <div class="container mx-auto px-10 py-5">
         <div class="flex flex-col space-y-5">
 
             <p id="confirmationMessage" class="inline flex px-3 py-3 my-2 mx-2 bg-green-200 text-green-800 rounded-xl hidden">Comment added successfully</p>
+
+            @if(Session::has('comment updated'))
+            <p class="inline flex px-3 py-2 mb-6 mx-2 bg-yellow-100 text-yellow-600 rounded-xl">{{ Session::get('comment updated') }}</p>
+            @endif
 
             @foreach($comments as $comment)
             <article class="bg-white pt-6 pb-2 px-6 rounded-2xl text-lg">
@@ -71,7 +75,7 @@
                         $('#confirmationMessage').show();
                         setTimeout(function() {
                             $('#confirmationMessage').hide();
-                        }, 3000);
+                        }, 5000);
                     }
                 });
             });
