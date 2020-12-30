@@ -5,11 +5,21 @@
             View Post
         </h2>
 
-        <button class="inline flex rounded-xl bg-blue-500 text-white text-xm px-2 py-2">
-            <a href={{ route('posts.edit', $post->id) }}>
-                Edit Post
-            </a>
-        </button>
+        <div class="flex flex-row space-x-8 items-center">
+            @if(in_array('Administrator', Auth::user()->profile->roles->pluck('name')->all()))
+            <button class="inline flex rounded-xl bg-red-500 text-white text-xm px-2 py-2">
+                <a href={{ route('posts.edit', $post->id) }}>
+                    Delete Post
+                </a>
+            </button>
+            @endif
+
+            <button class="inline flex rounded-xl bg-blue-500 text-white text-xm px-2 py-2">
+                <a href={{ route('posts.edit', $post->id) }}>
+                    Edit Post
+                </a>
+            </button>
+        </div>
     </x-slot>
 
     <div class="flex flex-col mx-8 my-6 px">
