@@ -78,6 +78,9 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if ($request->user()->cannot('update', Post::find($id))) {
+            abort(403);
+        }
         $validatedData = $request->validate([
             'title' => 'required|max:100',
             'content' => 'required'

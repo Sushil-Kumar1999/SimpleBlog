@@ -19,6 +19,10 @@
             <span>{{ date("l, F j, Y g:i a", strtotime($profile->last_active)) }}</spam>
         </div>
 
+        <div class="flex flex-col bg-blue-100 text-blue-600 rounded-md py-6 px-6">
+            <h3 class="font-bold underline mb-2">About</h3>
+            <p>{{ $profile->about }}</p>
+        </div>
 
         <div class="flex flex-col bg-red-100 text-red-600 rounded-md py-6 px-6">
             <h3 class="font-bold underline mb-3">Roles</h3>
@@ -33,9 +37,15 @@
             </div>
         </div>
 
-        <div class="flex flex-col bg-blue-100 text-blue-600 rounded-md py-6 px-6">
-            <h3 class="font-bold underline mb-2">About</h3>
-            <p>{{ $profile->about }}</p>
+        <div class="flex flex-col bg-purple-100 rounded-md py-6 px-6">
+            <h1 class="font-bold underline mb-3 text-purple-600">Posts written by {{ $profile->user->name }}</h1>
+            <div class="flex flex-col space-y-6">
+                @foreach($profile->posts as $post)
+                <a href={{ route('posts.show', $post) }}>
+                    <span class="inline flex bg-purple-300 text-purple-700 rounded-md py-3 px-3 hover:underline">{{ $post->title }}</span>
+                </a>
+                @endforeach
+            </div>
         </div>
 
     </div>
