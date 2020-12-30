@@ -39,7 +39,9 @@
                         <span class="flex items-center no-underline text-black" href="#">
                             <img alt="Placeholder" class="block rounded-full" src="https://picsum.photos/32/32/?random">
                             <p class="ml-2 text-sm">
-                                {{ $post->profile->user->name }}
+                                <a href={{ route('profiles.show', $post->profile->id) }}>
+                                    {{ $post->profile->user->name }}
+                                </a>
                             </p>
                         </span>
                         <p class="text-grey-darker text-sm">

@@ -12,7 +12,7 @@
         </button>
     </x-slot>
 
-    <div class="flex-col mx-8 my-6 px">
+    <div class="flex flex-col mx-8 my-6 px">
         <h3 class="mb-8 text-xl">{{ $post->title }}</h3>
 
         <h6 class="text-gray-800">
