@@ -37,7 +37,7 @@ Route::get('/posts/{post}', [PostController::class, 'show'])->middleware(['auth'
 
 Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->middleware(['auth'])->name('posts.edit');
 
-Route::post('/posts/{post}', [PostController::class, 'update'])->middleware(['auth'])->name('posts.update');
+Route::patch('/posts/{post}', [PostController::class, 'update'])->middleware(['auth'])->name('posts.update');
 
 Route::get('/posts/{post}/comments', [CommentController::class, 'page'])->middleware(['auth'])->name('comments.page');
 
