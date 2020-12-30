@@ -16,11 +16,13 @@
             </form>
             @endif
 
+            @if($post->profile_id === Auth::user()->profile->id)
             <button class="inline flex rounded-xl bg-blue-500 text-white text-xm px-2 py-2">
                 <a href={{ route('posts.edit', $post->id) }}>
                     Edit Post
                 </a>
             </button>
+            @endif
         </div>
     </x-slot>
 
