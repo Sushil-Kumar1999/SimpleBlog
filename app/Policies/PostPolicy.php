@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Post;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -10,6 +11,22 @@ class PostPolicy
 {
     use HandlesAuthorization;
 
+    /**
+    * Perform pre-authorization checks.
+    *
+    * @param  \App\Models\User  $user
+    * @param  string  $ability
+    * @return void|bool
+    */
+    public function before(User $user, $ability)
+    {
+        $adminRole = Role::firstWhere('name', 'Administrator');
+        $isAdmin = $user->profile->roles->contains($adminRole);
+
+        if ($isAdmin) {
+            return true;
+        }
+    }
     /**
      * Determine whether the user can view any models.
      *
