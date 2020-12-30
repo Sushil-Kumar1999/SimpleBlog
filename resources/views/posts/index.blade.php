@@ -5,7 +5,7 @@
             Posts
         </h2>
 
-        <button class="inline flex rounded bg-blue-400 text-white text-xm px-2 py-2">
+        <button class="inline flex rounded-md bg-blue-500 text-white text-xm px-2 py-2">
             <a href={{route('posts.create')}}>
                 Create New Post
             </a>

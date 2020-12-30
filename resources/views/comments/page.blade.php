@@ -72,10 +72,12 @@
                     success: function(response) {
                         document.getElementById("addCommentForm").reset();
 
-                        $('#confirmationMessage').show();
                         setTimeout(function() {
-                            $('#confirmationMessage').hide();
-                        }, 5000);
+                            document.location.reload();
+
+                        }, 0);
+
+                        $('#confirmationMessage').show();
                     }
                 });
             });
