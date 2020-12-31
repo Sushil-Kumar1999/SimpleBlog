@@ -13,6 +13,7 @@ class PostSeeder extends Seeder
         $post = new Post();
         $post->title = "This is a test post";
         $post->content = Str::random(100);
+        $post->image_path = "public/images/stock_image.jpg";
         $post->profile_id = 1;
         $post->save();
     }

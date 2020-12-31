@@ -13,7 +13,8 @@ class PostFactory extends Factory
     {
         return [
             "title" => $this->faker->sentence,
-            "content" => $this->faker->paragraphs(3, true)
+            "content" => $this->faker->paragraphs(3, true),
+            "image_path" => "public/images/stock_image.jpg"
         ];
     }
 }

@@ -35,9 +35,10 @@
             <div>Last updated on {{ date("l, F j, Y g:i a", strtotime($post->updated_at)) }}</div>
         </div>
 
-        <div class="mt-8 px-4 py-4 rounded-xl overflow-hidden bg-white">
-            {{ $post->content }}
-        </div>
+        <article class="mt-8 px-4 py-4 rounded-xl shadow-xl overflow-hidden bg-white">
+            <img alt="Image uploaded along with post" class="block h-auto w-auto" src="{{ Storage::url($post->image_path) }}">
+            <p class="mt-6">{{ $post->content }}</p>
+        </article>
 
         <div class="inline flex justify-end mt-2">
             <button class="cursor-pointer bg-blue-500 text-white text-md rounded-full px-3 py-1" type="submit">

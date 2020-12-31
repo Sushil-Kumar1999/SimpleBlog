@@ -30,9 +30,7 @@
             @foreach($posts as $post)
             <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
                 <article class="overflow-hidden rounded-lg shadow-lg">
-                    <a href="#">
-                        <img alt="Placeholder" class="block h-auto w-full" src="https://picsum.photos/600/400/?random">
-                    </a>
+                    <img alt="Image uploaded along with post" class="block h-auto w-full" src="{{ Storage::url($post->image_path) }}">
 
                     <header class="flex-wrap items-center justify-between leading-tight p-2 md:p-4">
                         <p class="text-lg overflow-hidden">
@@ -40,8 +38,6 @@
                                 {{ $post->title }}
                             </a>
                         </p>
-
-
                     </header>
 
                     <footer class="flex flex-row items-center justify-between leading-none px-4 pt-2 pb-4">
@@ -65,7 +61,6 @@
                     </footer>
                 </article>
             </div>
-
              @endforeach
         </div>
 

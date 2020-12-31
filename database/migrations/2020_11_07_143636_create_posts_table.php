@@ -12,6 +12,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('title');
             $table->longText('content');
+            $table->string('image_path');
             $table->timestamps();
 
             $table->foreignId('profile_id');

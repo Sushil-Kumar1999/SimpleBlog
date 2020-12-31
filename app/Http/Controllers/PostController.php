@@ -39,12 +39,16 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|unique:posts|max:100',
             'content' => 'required',
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'profile_id' => 'required|integer'
         ]);
+
+        $image_path = $request->file('image')->store('public/images');
 
         $post = new Post();
         $post->title = $validatedData['title'];
         $post->content = $validatedData['content'];
+        $post->image_path = $image_path;
         $post->profile_id = $validatedData['profile_id'];
         $post->save();
 
