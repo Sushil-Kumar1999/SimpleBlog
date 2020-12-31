@@ -18,7 +18,7 @@
             @endif
 
             @foreach($comments as $comment)
-            <article class="bg-white pt-6 pb-2 px-6 rounded-2xl text-lg space-y-5">
+            <article class="bg-white pt-6 pb-2 px-6 rounded-2xl shadow hover:shadow-2xl text-lg space-y-5">
                 {{ $comment->body }}
 
                 <footer class="flex flex-row items-center justify-between leading-none py-2 mt-3">
