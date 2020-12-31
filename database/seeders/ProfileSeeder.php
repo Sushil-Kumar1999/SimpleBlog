@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Profile;
+use App\Models\Image;
 use App\Models\Role;
 
 class ProfileSeeder extends Seeder
@@ -17,12 +18,13 @@ class ProfileSeeder extends Seeder
         $profile->save();
 
         Profile::factory()->hasPosts(3)
-            ->count(9)->create();
+            ->count(9)
+            ->create();
 
         Profile::all()->each(function($profile) {
-            $roles = array(1, 2, 3);
-            $roles_to_attach = array_slice($roles, 0, rand(1, 3));
-            $profile->roles()->syncWithoutDetaching($roles_to_attach);
+            $all_role_ids = Role::all()->pluck('id')->all();
+            $role_ids_to_attach = array_slice($all_role_ids, 0, rand(1, count($all_role_ids)));
+            $profile->roles()->syncWithoutDetaching($role_ids_to_attach);
         });
     }
 }
