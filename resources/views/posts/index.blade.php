@@ -44,18 +44,24 @@
 
                     </header>
 
-                    <footer class="flex items-center justify-between leading-none p-2 md:p-4">
-                        <span class="flex items-center no-underline text-black" href="#">
-                            <img alt="Placeholder" class="block rounded-full" src="https://picsum.photos/32/32/?random">
-                            <p class="ml-2 text-sm">
-                                <a href={{ route('profiles.show', $post->profile->id) }}>
+                    <footer class="flex flex-row items-center justify-between leading-none px-4 pt-2 pb-4">
+                        <div class="flex flex-col content-start justify-start text-gray-500">
+                            <span class="text-sm">
+                                Posted by
+                                <a class="hover:underline" href={{ route('profiles.show', $post->profile->id) }}>
                                     {{ $post->profile->user->name }}
                                 </a>
-                            </p>
-                        </span>
-                        <p class="text-grey-darker text-sm">
-                            {{ date("F j, Y", strtotime($post->updated_at)) }}
-                        </p>
+                            </span>
+                            <span class="text-sm">
+                                Last updated on {{ date("F j, Y", strtotime($post->updated_at)) }}
+                            </span>
+                        </div>
+
+                        <button class="inline flex rounded-xl bg-blue-500 text-white text-xm px-3 py-2">
+                            <a href={{ route('posts.show', $post) }}>
+                                View
+                            </a>
+                        </button>
                     </footer>
                 </article>
             </div>
