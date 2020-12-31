@@ -30,7 +30,9 @@
         <h3 class="text-xl">{{ $post->title }}</h3>
 
         <div>
-            <div>Written by {{ $post->profile->user->name }}</div>
+            <div>Written by
+                <a class="hover:underline" href={{ route('profiles.show', $post->profile_id) }}>{{ $post->profile->user->name }}</a>
+            </div>
             <div>Posted on  {{ date("l, F j, Y g:i a", strtotime($post->created_at)) }}</div>
             <div>Last updated on {{ date("l, F j, Y g:i a", strtotime($post->updated_at)) }}</div>
         </div>
