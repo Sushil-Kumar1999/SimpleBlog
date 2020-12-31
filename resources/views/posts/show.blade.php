@@ -29,13 +29,11 @@
     <div class="flex flex-col mx-8 my-6 space-y-5">
         <h3 class="text-xl">{{ $post->title }}</h3>
 
-        <h6 class="text-gray-800">
-            Posted by {{ $post->profile->user->name }}
-        </h6>
-
-        </span>
-            Last Updated : {{ date("l, F j, Y g:i a", strtotime($post->updated_at)) }}
-        </span>
+        <div>
+            <div>Written by {{ $post->profile->user->name }}</div>
+            <div>Posted on  {{ date("l, F j, Y g:i a", strtotime($post->created_at)) }}</div>
+            <div>Last updated on {{ date("l, F j, Y g:i a", strtotime($post->updated_at)) }}</div>
+        </div>
 
         <div class="mt-8 px-4 py-4 rounded-xl overflow-hidden bg-white">
             {{ $post->content }}
