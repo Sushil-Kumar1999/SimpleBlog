@@ -18,21 +18,18 @@
             @endif
 
             @foreach($comments as $comment)
-            <article class="bg-white pt-6 pb-2 px-6 rounded-2xl text-lg">
+            <article class="bg-white pt-6 pb-2 px-6 rounded-2xl text-lg space-y-5">
                 {{ $comment->body }}
 
-                <footer class="flex items-center justify-between leading-none md:p-4">
-                    <div class="flex flex-row space-x-6 items-center">
-                        <span class="flex items-center no-underline text-black" href="#">
-                            <img alt="Placeholder" class="block rounded-full" src="https://picsum.photos/32/32/?random">
-                            <p class="ml-2 text-sm">
-                                {{ $comment->profile->user->name }}
-                            </p>
-                        </span>
+                <footer class="flex flex-row items-center justify-between leading-none py-2 mt-3">
+                    <div class="flex flex-col content-start justify-start text-gray-500">
+                            <span class="text-sm">
+                                Posted by {{ $comment->profile->user->name }}
+                            </span>
 
-                        <p class="text-grey-darker text-sm">
-                            {{ date("F j, Y", strtotime($comment->updated_at)) }}
-                        </p>
+                            <span class="text-sm">
+                                Last Updated on {{ date("l, F j, Y g:i a", strtotime($comment->updated_at)) }}
+                            </span>
                     </div>
 
                     @if($comment->profile_id === Auth::user()->profile->id)
