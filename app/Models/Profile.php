@@ -29,4 +29,12 @@ class Profile extends Model
     {
         return $this->belongsToMany(Role::class);
     }
+
+    /**
+     * Get the profile's image.
+     */
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }
