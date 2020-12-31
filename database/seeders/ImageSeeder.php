@@ -16,30 +16,22 @@ class ImageSeeder extends Seeder
      */
     public function run()
     {
-        $image = new Image();
-        $image->storage_path = "public/images/stock_image.jpg";
-        $image->imageable_id = 1;
-        $image->imageable_type = "App\Models\Post";
-        $image->save();
-
         // create and save a new image for every profile in database
         Profile::all()->each(function($profile) {
             $image = new Image();
             $image->storage_path = "public/images/stock_image.jpg";
-            $image->imageable_id = 1;
-            $image->imageable_type = "App\Models\Post";
+            $image->imageable_id = $profile->id;
+            $image->imageable_type = "App\Models\Profile";
             $image->save();
-            $profile->image()->save($image);
         });
 
          // create and save a new image for every post in database
         Post::all()->each(function($post) {
             $image = new Image();
             $image->storage_path = "public/images/stock_image.jpg";
-            $image->imageable_id = 1;
+            $image->imageable_id = $post->id;
             $image->imageable_type = "App\Models\Post";
             $image->save();
-            $post->image()->save($image);
         });
 
     }
