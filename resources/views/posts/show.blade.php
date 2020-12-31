@@ -36,7 +36,7 @@
         </div>
 
         <article class="mt-8 px-4 py-4 rounded-xl shadow-xl overflow-hidden bg-white">
-            <img alt="Image uploaded along with post" class="block h-auto w-auto" src="{{ Storage::url($post->image_path) }}">
+            <img alt="Image uploaded along with post" width="200" height="150" src="{{ Storage::url($post->image_path) }}">
             <p class="mt-6">{{ $post->content }}</p>
         </article>
 

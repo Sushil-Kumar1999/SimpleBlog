@@ -39,7 +39,7 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|unique:posts|max:100',
             'content' => 'required',
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=200,min_height=150',
             'profile_id' => 'required|integer'
         ]);
 
@@ -91,6 +91,14 @@ class PostController extends Controller
         ]);
 
         $post = Post::find($id);
+
+        if($request->hasFile('image')){
+            $request->validate([
+              'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=200,min_height=150',
+            ]);
+            $image_path = $request->file('image')->store('public/images');
+            $post->image_path = $image_path;
+        }
 
         $post->title = $validatedData['title'];
         $post->content = $validatedData['content'];
