@@ -20,7 +20,7 @@
             <label for="image">Upload new image for your post (minimum dimensions 200 x 150 pixels)</label>
             <input id="image" type="file" name="image" placeholder="Upload image">
 
-            <img width="200" height="150" alt="Image uploaded along with post" src="{{ Storage::url($post->image_path) }}">
+            <img width="200" height="150" alt="Image uploaded along with post" src="{{ Storage::url($post->image->storage_path) }}">
 
             <div class="inline flex justify-end mt-2">
                 <button id="submitForm" class="cursor-pointer bg-blue-500 text-white text-md rounded-full px-3 py-1" type="submit">Update Post</button>
