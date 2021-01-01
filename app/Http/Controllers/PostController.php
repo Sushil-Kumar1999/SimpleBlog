@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Image;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -43,14 +45,17 @@ class PostController extends Controller
             'profile_id' => 'required|integer'
         ]);
 
-        $image_path = $request->file('image')->store('public/images');
-
         $post = new Post();
         $post->title = $validatedData['title'];
         $post->content = $validatedData['content'];
-        $post->image_path = $image_path;
         $post->profile_id = $validatedData['profile_id'];
         $post->save();
+
+        $image = new Image();
+        $image->storage_path = $request->file('image')->store('public/images');
+        $image->imageable_id = $post->id;
+        $image->imageable_type = "App\Models\Post";
+        $image->save();
 
         session()->flash('post created', 'Post created successfully');
 
@@ -91,18 +96,24 @@ class PostController extends Controller
         ]);
 
         $post = Post::find($id);
+        $post->title = $validatedData['title'];
+        $post->content = $validatedData['content'];
+        $post->save();
 
         if($request->hasFile('image')){
             $request->validate([
               'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=200,min_height=150',
             ]);
-            $image_path = $request->file('image')->store('public/images');
-            $post->image_path = $image_path;
-        }
 
-        $post->title = $validatedData['title'];
-        $post->content = $validatedData['content'];
-        $post->save();
+            Storage::delete($post->image->storge_path);
+            $post->image->delete();
+
+            $image = new Image();
+            $image->storage_path = $request->file('image')->store('public/images');;
+            $image->imageable_id = $post->id;
+            $image->imageable_type = "App\Models\Post";
+            $image->save();
+        }
 
         session()->flash('post updated', 'Post updated successfully');
 
