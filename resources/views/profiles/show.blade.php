@@ -8,12 +8,14 @@
 
     <div class="flex flex-col mx-8 my-6 px space-y-4">
 
-        <img alt="profile image" width="200" height="150" src="{{ Storage::url($profile->image->storage_path) }}">
+        <div class="flex flex-row space-x-10 bg-yellow-100 rounded-md py-6 px-6 shadow hover:shadow-lg">
+            <img src="{{ Storage::url($profile->image->storage_path) }}" width="200" height="150" alt="profile image" >
 
-        <div class="flex flex-col bg-yellow-100 text-yellow-600 rounded-md py-6 px-6 shadow hover:shadow-lg">
-            <h3 class="font-bold underline mb-2">User Details</h3>
-            <span>Name: {{ $profile->user->name }}</span>
-            <span>Email: {{ $profile->user->email }}</span>
+            <div class="flex flex-col content-start justify-start text-yellow-600">
+                <h3 class="font-bold underline mb-2">User Details</h3>
+                <span>Name: {{ $profile->user->name }}</span>
+                <span>Email: {{ $profile->user->email }}</span>
+            </div>
         </div>
 
         <div class="flex flex-col bg-green-100 text-green-600 rounded-md py-6 px-6 shadow hover:shadow-lg">
@@ -43,9 +45,12 @@
             <h1 class="font-bold underline mb-3 text-purple-600">Posts written by {{ $profile->user->name }}</h1>
             <div class="flex flex-col space-y-6">
                 @foreach($profile->posts as $post)
-                <a href={{ route('posts.show', $post) }}>
-                    <span class="inline flex bg-purple-300 text-purple-700 rounded-md py-3 px-3 shadow-md hover:shadow-xl hover:underline">{{ $post->title }}</span>
-                </a>
+                <div class="inline flex justify-between bg-purple-300 text-purple-700 rounded-md py-3 px-3 shadow-md hover:shadow-xl">
+                    <a href={{ route('posts.show', $post) }}>
+                        <span class="inline flex hover:underline">{{ $post->title }}</span>
+                    </a>
+                    <span>{{ date("F j, Y", strtotime($post->updated_at)) }}</span>
+                </div>
                 @endforeach
             </div>
         </div>
