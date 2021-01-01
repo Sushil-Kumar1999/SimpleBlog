@@ -8,6 +8,8 @@
 
     <div class="flex flex-col mx-8 my-6 px space-y-4">
 
+        <img alt="profile image" width="200" height="150" src="{{ Storage::url($profile->image->storage_path) }}">
+
         <div class="flex flex-col bg-yellow-100 text-yellow-600 rounded-md py-6 px-6 shadow hover:shadow-lg">
             <h3 class="font-bold underline mb-2">User Details</h3>
             <span>Name: {{ $profile->user->name }}</span>
