@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Mail\UserCommented;
+use Illuminate\Support\Facades\Mail;
 
 class CommentController extends Controller
 {
@@ -22,7 +24,6 @@ class CommentController extends Controller
         $comments = Comment::with('profile.user')
                            ->where('post_id', $post->id)
                            ->orderBy('updated_at', 'desc')->get();
-                           //->paginate(5);
 
         return $comments;
     }
@@ -40,6 +41,8 @@ class CommentController extends Controller
         $comment->profile_id =$validatedData['profile_id'];
         $comment->post_id = $validatedData['post_id'];
         $comment->save();
+
+        Mail::to($comment->post->profile->user->email)->send(new UserCommented($comment));
 
         $new_comment = Comment::with('profile.user')->find($comment->id);
         return $new_comment;

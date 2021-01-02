@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
+use App\Mail\UserCommented;
+use App\Models\Comment;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,3 +56,8 @@ Route::get('/profiles/{profile}', [ProfileController::class, 'show'])->middlewar
 
 // Role
 Route::get('/roles/{role}', [RoleController::class, 'show'])->middleware(['auth'])->name('roles.show');
+
+// test email markdown template
+Route::get('/testemail', function() {
+    return new UserCommented(Comment::find(4));
+});
