@@ -17,6 +17,16 @@ class CommentController extends Controller
         return view('comments.page', ['comments' => $comments, 'post' => $post]);
     }
 
+    public function apiGet(Post $post)
+    {
+        $comments = Comment::with('profile.user')
+                           ->where('post_id', $post->id)
+                           ->orderBy('updated_at', 'desc')->get();
+                           //->paginate(5);
+
+        return $comments;
+    }
+
     public function apiStore(Request $request)
     {
         $validatedData = $request->validate([
@@ -31,7 +41,8 @@ class CommentController extends Controller
         $comment->post_id = $validatedData['post_id'];
         $comment->save();
 
-        return $comment;
+        $new_comment = Comment::with('profile.user')->find($comment->id);
+        return $new_comment;
     }
 
     public function edit(Comment $comment)
@@ -51,6 +62,6 @@ class CommentController extends Controller
 
         session()->flash('comment updated', 'Comment updated successfully');
 
-        return redirect()->route('comments.page', $comment->post_id);
+        return redirect()->route('posts.show', $comment->post_id);
     }
 }
