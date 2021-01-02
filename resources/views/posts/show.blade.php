@@ -102,6 +102,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 
+
     <script>
         var profileId = {{ Auth::user()->profile->id }};
         var postId = {{ $post->id }};
@@ -122,7 +123,7 @@
                     this.comments = response.data;
                 })
                 .catch(error => {
-                    console.log(response);
+                    console.log(error);
                 })
             },
             methods: {
@@ -145,7 +146,7 @@
                         this.commentBody = '';
                     })
                     .catch(error => {
-                        console.log(response);
+                        console.log(error);
                     });
                 }
             }
