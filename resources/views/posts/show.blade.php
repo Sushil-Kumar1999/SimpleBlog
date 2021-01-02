@@ -100,9 +100,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-
 
     <script>
         var profileId = {{ Auth::user()->profile->id }};
@@ -121,7 +119,7 @@
             mounted() {
                 axios.get("{{ route('api.comments.get', $post->id) }}")
                 .then(response => {
-                    this.comments = response.data.data;
+                    this.comments = response.data;
                 })
                 .catch(error => {
                     console.log(error);
