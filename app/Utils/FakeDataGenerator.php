@@ -21,4 +21,13 @@ class FakeDataGenerator
 
 	    return $fake_comment;
     }
+
+    public function getFakePost()
+    {
+        $fake_post_id = random_int(1, 100);
+        $response = $this->httpClient->request('GET', 'posts/' . $fake_post_id);
+	    $fake_post = $response->getBody()->getContents();
+
+	    return $fake_post;
+    }
 }

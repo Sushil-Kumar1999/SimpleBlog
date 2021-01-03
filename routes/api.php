@@ -24,3 +24,5 @@ Route::post('/posts/{post}/comments', [CommentController::class, 'apiStore'])->n
 Route::get('/posts/{post}/comments', [CommentController::class, 'apiGet'])->name('api.comments.get');
 
 Route::get('/fake/comments', [CommentController::class, 'apiGetFake'])->name('api.comments.getFake');
+
+Route::get('/fake/posts', [CommentController::class, 'apiGetFake'])->name('api.posts.getFake');

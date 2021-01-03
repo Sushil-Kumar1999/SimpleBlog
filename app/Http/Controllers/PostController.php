@@ -6,9 +6,17 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Image;
 use Illuminate\Support\Facades\Storage;
+use App\Utils\FakeDataGenerator;
 
 class PostController extends Controller
 {
+    protected $fakeDataGenerator;
+
+    public function __construct(FakeDataGenerator $fakeDataGenerator)
+    {
+    	$this->fakeDataGenerator = $fakeDataGenerator;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -132,5 +140,10 @@ class PostController extends Controller
         session()->flash('post deleted', 'Post deleted successfully');
 
         return redirect()->route('posts.index');
+    }
+
+    public function apiGetFake()
+    {
+	    return $this->fakeDataGenerator->getFakePost();
     }
 }
