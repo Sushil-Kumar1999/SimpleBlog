@@ -28,18 +28,17 @@ class CommentController extends Controller
         return $comments;
     }
 
-    public function apiStore(Request $request)
+    public function apiStore(Request $request, Post $post)
     {
         $validatedData = $request->validate([
             'body' => 'required',
-            'profile_id' => 'required|integer',
-            'post_id' => 'required|integer'
+            'profile_id' => 'required|integer'
         ]);
 
         $comment = new Comment();
         $comment->body = $validatedData['body'];
-        $comment->profile_id =$validatedData['profile_id'];
-        $comment->post_id = $validatedData['post_id'];
+        $comment->profile_id = $validatedData['profile_id'];
+        $comment->post_id = $post->id;
         $comment->save();
 
         Mail::to($comment->post->profile->user->email)->send(new UserCommented($comment));

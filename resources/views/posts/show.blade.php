@@ -88,9 +88,6 @@
                 <label for="body">Write a comment <span class="text-red-500">*</span> :</label>
                 <textarea v-model="commentBody" id="body" name="body" rows="7" placeholder="Write your comment here"></textarea>
 
-                <input type="hidden" name="profile_id" value="{{ Auth::user()->profile->id }}">
-                <input type="hidden" name="post_id" value="{{ $post->id }}">
-
                 <div class="inline flex justify-end mt-2">
                     <button v-on:click="createComment" class="cursor-pointer bg-blue-500 text-white text-md rounded-full px-3 py-1">Post Comment</button>
                 </div>
@@ -104,13 +101,11 @@
 
     <script>
         var profileId = {{ Auth::user()->profile->id }};
-        var postId = {{ $post->id }};
 
         var app = new Vue({
             el: "#root",
             data: {
                 currentUserProfileId: profileId,
-                currentPostId: postId,
                 comments: [],
                 showCommentSection: false,
                 toggleCommentSectionButtonText: "Show Comments",
@@ -134,10 +129,9 @@
                     this.toggleCommentSectionButtonText = this.showCommentSection ? "Hide Comments" : "Show Comments";
                 },
                 createComment: function() {
-                    axios.post("{{ route('api.comments.store') }}", {
+                    axios.post("{{ route('api.comments.store', ['post' => $post]) }}", {
                         body: this.commentBody,
-                        profile_id: this.currentUserProfileId,
-                        post_id: this.currentPostId
+                        profile_id: this.currentUserProfileId
                     })
                     .then(response => {
                         console.log(response);

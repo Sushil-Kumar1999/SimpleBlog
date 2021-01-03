@@ -19,6 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/comments', [CommentController::class, 'apiStore'])->name('api.comments.store');
+Route::post('/posts/{post}/comments', [CommentController::class, 'apiStore'])->name('api.comments.store');
 
 Route::get('/posts/{post}/comments', [CommentController::class, 'apiGet'])->name('api.comments.get');

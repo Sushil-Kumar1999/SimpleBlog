@@ -63,7 +63,7 @@
         <script>
             $("#submitForm").click(function() {
                 $.ajax({
-                    url: "{{ route('api.comments.store') }}",
+                    url: "{{ route('api.comments.store', ['post' => $post]) }}",
                     type: "POST",
                     data: $('#addCommentForm').serialize(),
                     success: function(response) {
