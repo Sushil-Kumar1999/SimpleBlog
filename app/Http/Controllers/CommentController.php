@@ -5,11 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Utils\FakeDataGenerator;
 use App\Mail\UserCommented;
 use Illuminate\Support\Facades\Mail;
 
 class CommentController extends Controller
 {
+    protected $fakeDataGenerator;
+
+    public function __construct(FakeDataGenerator $fakeDataGenerator)
+    {
+    	$this->fakeDataGenerator = $fakeDataGenerator;
+    }
+
     public function page(Post $post)
     {
         $comments = Comment::where('post_id', $post->id)
@@ -41,7 +49,7 @@ class CommentController extends Controller
         $comment->post_id = $post->id;
         $comment->save();
 
-        Mail::to($comment->post->profile->user->email)->send(new UserCommented($comment));
+        //Mail::to($comment->post->profile->user->email)->send(new UserCommented($comment));
 
         $new_comment = Comment::with('profile.user')->find($comment->id);
         return $new_comment;
@@ -65,5 +73,10 @@ class CommentController extends Controller
         session()->flash('comment updated', 'Comment updated successfully');
 
         return redirect()->route('posts.show', $comment->post_id);
+    }
+
+    public function apiGetFake()
+    {
+	    return $this->fakeDataGenerator->getFakeComment();
     }
 }

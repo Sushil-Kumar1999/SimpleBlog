@@ -88,7 +88,8 @@
                 <label for="body">Write a comment <span class="text-red-500">*</span> :</label>
                 <textarea v-model="commentBody" id="body" name="body" rows="7" placeholder="Write your comment here"></textarea>
 
-                <div class="inline flex justify-end mt-2">
+                <div class="flex flex-row space-x-8 justify-end mt-2">
+                    <button v-on:click="getFakeComment" class="cursor-pointer bg-blue-500 text-white text-md rounded-full px-3 py-1">Generate Fake Comment</button>
                     <button v-on:click="createComment" class="cursor-pointer bg-blue-500 text-white text-md rounded-full px-3 py-1">Post Comment</button>
                 </div>
             </form>
@@ -137,6 +138,15 @@
                         console.log(response);
                         this.comments.unshift(response.data);
                         this.commentBody = '';
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+                },
+                getFakeComment: function() {
+                    axios.get("{{ route('api.comments.getFake') }}")
+                    .then(response => {
+                        this.commentBody = response.data.body;
                     })
                     .catch(error => {
                         console.log(error);
