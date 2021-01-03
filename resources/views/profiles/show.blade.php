@@ -13,14 +13,16 @@
 
             <div class="flex flex-col content-start justify-start text-yellow-600">
                 <h3 class="font-bold underline mb-2">User Details</h3>
-                <span>Name: {{ $profile->user->name }}</span>
+                <span>
+                    Name: <a href={{ route('users.show', $profile->user) }} class="hover:underline"> {{ $profile->user->name }}</a>
+                </span>
                 <span>Email: {{ $profile->user->email }}</span>
             </div>
         </div>
 
         <div class="flex flex-col bg-green-100 text-green-600 rounded-md py-6 px-6 shadow hover:shadow-lg">
             <h3 class="font-bold underline mb-2">Last Active</h3>
-            <span>{{ date("l, F j, Y g:i a", strtotime($profile->last_active)) }}</spam>
+            <span>{{ date("l, F j, Y g:i a", strtotime($profile->last_active)) }}</span>
         </div>
 
         <div class="flex flex-col bg-blue-100 text-blue-600 rounded-md py-6 px-6 shadow hover:shadow-lg">
