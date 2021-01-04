@@ -1,8 +1,9 @@
 <x-app-layout>
+    <x-slot name="title">Edit Comment for post - {{ $comment->post->title }}</x-slot>
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Edit Comment for post {{ $comment->post->title }}
+            Edit Comment for post - {{ $comment->post->title }}
         </h2>
     </x-slot>
 
