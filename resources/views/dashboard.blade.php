@@ -9,7 +9,7 @@
 
     <div class="container">
         <div class="inline flex p-6 mx-6 my-3 bg-white border-b border-gray-200">
-            You are now logged in. Welcome to your dashboard. Begin exploring SimpleBlog now!
+            You are now logged in. Welcome to your dashboard. Begin exploring SimpleBlog now! Let's get started
         </div>
 
         <div class="grid grid-cols-3 gap-x-8 gap-y-4 h-80">
